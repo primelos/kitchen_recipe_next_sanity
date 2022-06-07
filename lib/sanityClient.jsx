@@ -11,7 +11,7 @@ const config = {
 
 export const sanityClient = createClient(config);
 
-export const usePreviewPrescription = createPreviewSubscriptionHook(config);
+export const usePreviewSubscription = createPreviewSubscriptionHook(config);
 
 export const urlFor = (source) => createImageUrlBuilder(config).image(source);
 

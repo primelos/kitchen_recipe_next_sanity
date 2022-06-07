@@ -25,7 +25,7 @@ const recipesQuery = `*[_type == "recipe" && slug.current == $slug][0]{
  instructions,
  likes,
 }`;
-console.log("usePreviewSubscription", usePreviewSubscription);
+
 export default function OneRecipe({ data, preview }) {
   // const { data: recipe } = usePreviewSubscription(recipesQuery, {
   //   params: { slug: data.recipe?.slug.current },
@@ -33,6 +33,7 @@ export default function OneRecipe({ data, preview }) {
   //   enabled: preview,
   // });
 
+  const { recipe } = data;
   const [likes, setLikes] = useState(data?.recipe?.likes);
   const router = useRouter();
   if (!data) {
@@ -50,8 +51,7 @@ export default function OneRecipe({ data, preview }) {
     setLikes(data.likes);
   };
 
-  const { recipe } = data;
-
+  console.log("recipe", recipe);
   return (
     <article className="recipe">
       <h1>{recipe.name}</h1>
