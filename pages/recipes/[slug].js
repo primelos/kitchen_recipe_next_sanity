@@ -51,7 +51,6 @@ export default function OneRecipe({ data, preview }) {
     setLikes(data.likes);
   };
 
-  console.log("recipe", recipe);
   return (
     <article className="recipe">
       <h1>{recipe.name}</h1>
