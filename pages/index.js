@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import Link from "next/link";
 import { sanityClient, urlFor } from "../lib/sanityClient";
