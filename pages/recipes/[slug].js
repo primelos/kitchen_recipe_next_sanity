@@ -36,7 +36,7 @@ export default function OneRecipe(props) {
   if (!props) {
     return <div>Loading...</div>;
   }
-
+  console.log("recipe", recipe);
   const addLike = async () => {
     const res = await fetch("/api/handle-like", {
       method: "POST",
@@ -56,7 +56,7 @@ export default function OneRecipe(props) {
         {likes} ❤️
       </button>
       <main className="content">
-        <img src={urlFor(recipe?.mainImage).url()} alt={recipe?.name} />
+        <img src={urlFor(recipe.mainImage).url()} alt={recipe.name} />
         <div className="breakdown">
           <ul className="ingredients">
             {recipe?.ingredient?.map((ingredient) => (
