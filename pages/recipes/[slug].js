@@ -26,13 +26,16 @@ const recipesQuery = `*[_type == "recipe" && slug.current == $slug][0]{
  likes,
 }`;
 
-export default function OneRecipe({ data }) {
-  const { recipe } = data || {};
+export default function OneRecipe(props) {
+  // const { recipe } = data || {};
+  const {
+    data: { recipe },
+  } = props || {};
 
-  const [likes, setLikes] = useState(data?.recipe?.likes);
+  const [likes, setLikes] = useState(recipe?.likes);
   const router = useRouter();
 
-  if (!data) {
+  if (!props) {
     return <div>Loading...</div>;
   }
 
@@ -50,15 +53,15 @@ export default function OneRecipe({ data }) {
 
   return (
     <article className="recipe">
-      <h1>{recipe.name}</h1>
+      <h1>{recipe?.name}</h1>
       <button className="like-button" onClick={addLike}>
         {likes} ❤️
       </button>
       <main className="content">
-        <img src={urlFor(recipe?.mainImage).url()} alt={recipe.name} />
+        <img src={urlFor(recipe?.mainImage).url()} alt={recipe?.name} />
         <div className="breakdown">
           <ul className="ingredients">
-            {recipe.ingredient?.map((ingredient) => (
+            {recipe?.ingredient?.map((ingredient) => (
               <li key={ingredient._key} className="ingredient">
                 {ingredient?.wholeNumber}
                 {ingredient?.fraction} {ingredient?.unit}
@@ -96,5 +99,5 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const recipe = await sanityClient.fetch(recipesQuery, { slug });
-  return { props: { data: { recipe }, preview: true } };
+  return { props: { data: { recipe } } };
 }
