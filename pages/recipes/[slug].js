@@ -26,19 +26,16 @@ const recipesQuery = `*[_type == "recipe" && slug.current == $slug][0]{
  likes,
 }`;
 
-export default function OneRecipe({ data, preview }) {
-  // const { data: recipe } = usePreviewSubscription(recipesQuery, {
-  //   params: { slug: data.recipe?.slug.current },
-  //   initialData: data,
-  //   enabled: preview,
-  // });
-
+export default function OneRecipe({ data }) {
   const { recipe } = data;
+
   const [likes, setLikes] = useState(data?.recipe?.likes);
   const router = useRouter();
+
   if (!data) {
     return <div>Loading...</div>;
   }
+
   const addLike = async () => {
     const res = await fetch("/api/handle-like", {
       method: "POST",
@@ -47,8 +44,8 @@ export default function OneRecipe({ data, preview }) {
       }),
     }).catch((error) => console.log(error));
 
-    const data = await res.json();
-    setLikes(data.likes);
+    const dataLikes = await res.json();
+    setLikes(dataLikes.likes);
   };
 
   return (
