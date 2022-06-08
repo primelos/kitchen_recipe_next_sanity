@@ -56,7 +56,7 @@ export default function OneRecipe(props) {
         {likes} ❤️
       </button>
       <main className="content">
-        <img src={urlFor(recipe.mainImage).url()} alt={recipe.name} />
+        {/* <img src={urlFor(recipe.mainImage).url()} alt={recipe.name} /> */}
         <div className="breakdown">
           <ul className="ingredients">
             {recipe?.ingredient?.map((ingredient) => (
