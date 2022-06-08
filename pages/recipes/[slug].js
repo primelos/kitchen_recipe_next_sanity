@@ -27,7 +27,7 @@ const recipesQuery = `*[_type == "recipe" && slug.current == $slug][0]{
 }`;
 
 export default function OneRecipe({ data }) {
-  const { recipe } = data;
+  const { recipe } = data || {};
 
   const [likes, setLikes] = useState(data?.recipe?.likes);
   const router = useRouter();
