@@ -28,9 +28,7 @@ const recipesQuery = `*[_type == "recipe" && slug.current == $slug][0]{
 
 export default function OneRecipe(props) {
   // const { recipe } = data || {};
-  const {
-    data: { recipe },
-  } = props || {};
+  const { recipe } = props || {};
 
   const [likes, setLikes] = useState(recipe?.likes);
   const router = useRouter();
@@ -99,5 +97,5 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const recipe = await sanityClient.fetch(recipesQuery, { slug });
-  return { props: { data: { recipe } } };
+  return { props: { recipe } };
 }
