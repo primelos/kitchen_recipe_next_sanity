@@ -47,7 +47,7 @@ export default function OneRecipe(props) {
     const dataLikes = await res.json();
     setLikes(dataLikes.likes);
   };
-
+  console.log("first", urlFor(recipe.mainImage));
   return (
     <article className="recipe">
       <h1>{recipe?.name}</h1>
@@ -89,9 +89,10 @@ export async function getStaticPaths() {
       }
     }`
   );
+
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 }
 
